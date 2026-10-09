@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · TicketPilot</title>
+  <meta name="robots" content="noindex">
+  <style>
+    /* Inline on purpose: this page can be served from any URL depth, so it cannot rely on relative CSS. */
+    :root { color-scheme: light dark; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; box-sizing: border-box;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f6f8f8; color: #0f1f26; }
+    .box { max-width: 460px; text-align: center; background: #fff; border: 1px solid #dde6e6; border-radius: 20px; padding: 36px 28px; box-shadow: 0 10px 30px rgba(11,31,42,.08); }
+    h1 { margin: 0 0 8px; font-size: 1.5rem; }
+    p { margin: 0 0 18px; line-height: 1.55; color: #3e5058; }
+    a.btn { display: inline-block; padding: 12px 20px; border-radius: 12px; background: #0b6b66; color: #fff; font-weight: 600; text-decoration: none; }
+    a.btn:focus-visible { outline: 3px solid #ff7a59; outline-offset: 3px; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #0b1519; color: #e8f1f2; }
+      .box { background: #12222a; border-color: #24404a; box-shadow: none; }
+      p { color: #b5c7cc; }
+      a.btn { background: #2fb5ab; color: #04201e; }
+    }
+  </style>
+</head>
+<body>
+  <main class="box">
+    <h1>That page doesn’t exist</h1>
+    <p>No worries. Taking you back to TicketPilot in a moment.</p>
+    <a id="home" class="btn" href="./index.html">Go to TicketPilot</a>
+  </main>
+  <script>
+    // GitHub Pages serves this file for any unknown path. Work out the site root, then go home.
+    // PROJECT_SITE = true  -> served from https://USERNAME.github.io/REPO-NAME/ (the default)
+    // PROJECT_SITE = false -> served from a user site or custom domain root
+    (function () {
+      var PROJECT_SITE = true;
+      var parts = location.pathname.split('/').filter(Boolean);
+      var onGithubPages = /\.github\.io$/.test(location.hostname);
+      var base = (PROJECT_SITE && onGithubPages && parts.length) ? '/' + parts[0] + '/' : '/';
+      var target = base + 'index.html#/';
+      document.getElementById('home').setAttribute('href', target);
+      setTimeout(function () { location.replace(target); }, 1500);
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="3; url=./index.html"></noscript>
+</body>
+</html>
